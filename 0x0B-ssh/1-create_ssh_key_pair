@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
-private_key="school"
-ssh-keygen -t rsa -b 4096 -N betty -f "$private_key"
+#generating SSH
+ssh-keygen -t rsa -b 4096 -N betty -f school"
 
