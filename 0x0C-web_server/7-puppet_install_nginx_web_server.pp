@@ -20,4 +20,5 @@ exec {'redirect_me':
 
 service {'nginx':
 	ensure => running,
-	require => Pa
+        require => Package['nginx']
+}
