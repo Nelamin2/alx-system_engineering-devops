@@ -3,7 +3,7 @@
 
 sudo apt-get update -y -qq && \
 	 sudo apt-get install nginx -y
-udo bash -c "echo 'Hello Wprl!' > /
+sudo bash -c "echo 'Hello Wprl!' > /
 var/www/html/index.html"
 # starting nginx service
 sudo service nginx start
