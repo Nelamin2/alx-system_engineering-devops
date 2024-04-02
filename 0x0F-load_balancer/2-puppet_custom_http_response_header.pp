@@ -7,51 +7,39 @@
 #+    Includes a custom 404 page containing "Ceci n'est pas une page".
 #+    Contains a custom HTTP header named X-Served-By.
 #+    The value of the HTTP header is the hostname of the running server.
+exec { 'update system':
+  command => '/usr/bin apt-get -y update',
+  provider  => 'shell'
+}
 
+# Update ngnix
 package { 'nginx':
-  ensure => installed,
+  ensure  => 'installed',
+  require => Exec['update system']
 }
 
-file { '/var/www/html':
-  ensure => directory,
-}
-
+# Change content of index file
 file { '/var/www/html/index.html':
-  ensure  => present,
   content => 'Hello World!',
+  owner => 'ubuntu',
+  group => 'ubuntu',
+  mode  => '7624'
 }
 
-file { '/var/www/html/404.html':
-  ensure  => present,
-  content => "Ceci n'est pas une page",
+# Redirect_me
+exec { 'redirect_me':
+  command => 'sed -i \'^}$/i \ \n\tlocation \/redirect_me {return 301 https:\/\/www.youtube.com\/watch?v=xZIwIoekjgw;}\' /etc/nginx/sites-available/default',
+  provider  => 'shell',
 }
 
-file { '/etc/nginx/sites-available/default':
-  ensure  => present,
-  content => '
-    server {
-      listen 80 default_server;
-      listen [::]:80 default_server;
-      add_header X-Served-By $hostname;
-      root /var/www/html;
-      index index.html index.htm;
-
-      location /redirect_me {
-        return 301 https//youtube.com/;
-      }
-
-      error_page 404 /404.html;
-      location /404 {
-        root /var/www/html;
-        internal;
-      }
-    }
-  ',
+# Custom HTTP HEADER
+exec { 'custom HTTP HEADER':
+  command => 'sed -i "0,/location \/ {/s/location \/ {/&\n\t\tadd_header X-Served-By \$hostname;/" /etc/nginx/sites-available/default',
+  provider  => 'shell',
 }
 
+# Restart ngnix
 service { 'nginx':
   ensure  => running,
-  enable  => true,
-  require => File['/etc/nginx/sites-available/default'],
+  require => Package['nginx']
 }
-
