@@ -9,8 +9,8 @@ if __name__ == "__main__":
 
     url = "https://jsonplaceholder.typicode.com/"
     emp_id = sys.argv[1]
-    user = requests.get(url + "users/{}".format(employee_id)).json()
-    Parameters = {"userId": employee_id}
+    user = requests.get(url + "users/{}".format(emp_id)).json()
+    params = {"userId": emp_id}
     todos = requests.get(url + "todos", params).json()
     completed = [i.get("title") for i in todos if i.get("completed") is True]
     print("Employee {} is done with tasks({}/{}):".format(
