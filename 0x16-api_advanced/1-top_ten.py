@@ -14,7 +14,6 @@ def top_ten(subreddit):
     # Define headers for the HTTP request, including User-Agent
     headers = {
         "User-Agent": "LearnApi/0.0.1"}
-
     response = requests.get(url, headers=headers, allow_redirects=False)
     if response.status_code == 200:
         data = response.json()
@@ -23,4 +22,3 @@ def top_ten(subreddit):
             print(post["data"]["title"])
     else:
         print(None)
-
