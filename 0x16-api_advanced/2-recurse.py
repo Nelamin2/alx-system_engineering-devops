@@ -8,12 +8,16 @@ def recurse(subreddit, hot_list=[], after="", count=0):
     """Recursively retrieves a list of titles of all hot posts
     on a given subreddit"""
 
-    url = "https://www.reddit.com/r/{}/hot/.json?after={}&count={}&limit=100".format(subreddit, after, count)
-
+    url = "https://www.reddit.com/r/{}/hot/.json".format(subreddit)
     headers = {"User-Agent": "LearApi/0.0.1"}
-
+    params = {
+        "after": after,
+        "count": count,
+        "limit": 100
+    }
     # Send a GET request to the subreddit's hot posts page
-    response = requests.get(url, headers=headers, allow_redirects=False)
+    response = requests.get(url, headers=headers, params=params,
+                            allow_redirects=False)
 
     # Check if the response status code indicates a not-found error (404)
     if response.status_code == 404:
