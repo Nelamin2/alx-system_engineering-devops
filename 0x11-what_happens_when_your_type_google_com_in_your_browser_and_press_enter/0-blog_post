@@ -1,0 +1,27 @@
+https://medium.com/@nidalelamin/0x11-what-happens-when-you-type-google-com-in-your-browser-and-press-enter-77fe95ae842e
+0x11. What happens when you type google.com in your browser and press Enter
+
+Nidal Elamin
+Nidal Elamin
+2 min read
+·
+Just now
+
+
+
+
+
+When you type “https://www.google.com" into your browser and press Enter, several steps occur behind the scenes to fetch the webpage. Let’s break down each step in the process:
+NS Request: When you type “https://www.google.com" into your browser, your computer first checks its local DNS cache to see if it already knows the IP address associated with the domain. If not, it sends a DNS request to a DNS server, which may be provided by your ISP or a public DNS service like Google’s 8.8.8.8. The DNS server looks up the IP address associated with “www.google.com" and returns it to your computer.
+TCP/IP: With the IP address in hand, your computer initiates a TCP connection to the web server at that IP address. This involves a three-way handshake where your computer and the server exchange packets to establish the connection. Once the connection is established, data can be exchanged between your computer and the server.
+Firewall: Before the request reaches the web server, it may pass through a firewall. The firewall checks the request against predefined rules to determine if it should be allowed. For example, the firewall may block requests from known malicious IP addresses or prevent access to certain ports.
+HTTPS/SSL: If the website uses HTTPS, the browser initiates a TLS handshake with the web server. This involves several steps, including exchanging encryption keys, verifying the server’s identity, and establishing a secure connection. Once the TLS handshake is complete, data exchanged between your browser and the server is encrypted.
+Load Balancer: In the case of large websites like Google, incoming requests are often routed through a load balancer. The load balancer distributes the requests across multiple servers to ensure that no single server becomes overwhelmed. This helps to improve the website’s performance and reliability.
+Web Server: The request finally reaches the web server, which is responsible for handling the request and serving the requested content. The web server retrieves the requested webpage (e.g., the Google homepage) and sends it back to your browser over the established TCP connection.
+Application Server: In some cases, the web server may need to interact with an application server to process dynamic content. For example, if you perform a search on Google, the request may be forwarded to an application server that queries a database to retrieve search results.
+Database: If the webpage requires data from a database, the application server queries the database and retrieves the relevant data. This data is then formatted and included in the response sent back to your browser.
+Throughout this process, various components work together to ensure that your request is processed correctly and that you receive the requested content in a secure and efficient manner.
+
+
+
+
