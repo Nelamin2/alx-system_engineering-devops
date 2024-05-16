@@ -7,4 +7,3 @@ exec { 'nginx-restart':
   command => '/etc/init.d/nginx restart',
   path    => '/etc/init.d',
 }
-exec {'fix --for--nginx':
